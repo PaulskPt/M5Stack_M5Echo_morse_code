@@ -59,6 +59,15 @@ bool my_debug = false;
 #define GROVE_PIN2 32 // Define the second pin of Port B (White wire)
 #endif
 
+// Uncomment this when you want to view the audio timings on an oscilloscope
+// However, when using USE_AUDIO_VIA_PORT_B, comment-out USE_DUALBTN above.
+// #define USE_AUDIO_VIA_PORT_B
+
+#ifdef USE_AUDIO_VIA_PORT_B
+#define GROVE_PIN1 26 // Define the first  pin of Port B (Yellow wire)
+#define GROVE_PIN2 32 // Define the second pin of Port B (White wire)
+#endif
+
 int debounce_delay = 500; // mSec
 
 CRGB leds[NUM_LEDS];
@@ -68,12 +77,23 @@ enum my_colors {RED=0, GREEN, BLUE, WHITE, BLACK};
 unsigned long start_t = millis();
 
 ATOMECHOSPKR echoSPKR;
-
-const int delay_mult = 1;
-uint16_t dly1 = 100 * delay_mult; // unit delay
-uint16_t dly2 = 200 * delay_mult; // longer unit delay (for test)
-uint16_t dly3 = 300 * delay_mult; // character delay
-uint16_t dly7 = 700 * delay_mult; // word delay
+// +-------+-----------+-------------+
+// | var   | milli-    | morse speed |
+// |       | sonds     | (wpm)       |
+// +-------+-----------+-------------+
+// | dly1  |    10     |    30       |
+// +-------+-----------+-------------+
+// | dly1  |    20     |    26       |
+// +-------+-----------+-------------+
+// | dly1  |    25     |    25       |
+// +-------+-----------+-------------+
+// | dly1  |    50     |    19       |
+// +-------+-----------+-------------+
+// | dly1  |   100     |    13       |
+// +-------+-----------+-------------+
+uint16_t dly1 = 50;       // unit delay
+uint16_t dly3 = dly1 * 3; // character delay
+uint16_t dly7 = dly1 * 7; // word delay
 
 // Define two beep tones
 beep tone_dot = 
@@ -144,8 +164,8 @@ void dot_dash_time() {
 }
 
 void show_delays() {
-  Serial.println(F("Values for dly1-dly7:"));
-  Serial.printf("dly1: %d, dly2: %d, dly3: %d, dly7: %d mSeconds\n", dly1, dly2, dly3, dly7);
+  Serial.println(F("Values for dly1, dly3 and dly7:"));
+  Serial.printf("dly1: %d, dly3: %d, dly7: %d mSeconds\n", dly1, dly3, dly7);
 }
 
 void set_speed(int speedChg) {
@@ -166,7 +186,6 @@ void set_speed(int speedChg) {
     tone_dot.time_ms = 10000;
 
   dly1 = tone_dot.time_ms;
-  dly2 = dly1 * 2;
   dly3 = dly1 * 3;
   dly7 = dly1 * 7;
 
@@ -326,25 +345,25 @@ void send_morse() {
         return;
       }
   #endif
-      c = txt[i];  // extract the indexed character from the char string txt
+      c = txt[i];
       n = static_cast<int>(c); // Calculate the ASCII value
-      if (n == 32) {  // do we have a word space?
+      if (n == 32) {
         if (my_debug)
           Serial.println(F("word space delay"));
         if (my_morse_debug)
           Serial.print("|  7  |\n");
-        delay(dly7);  // wait for a word space time
-        unit_count += 7; // update the unit count
+        delay(dly7);
+        unit_count += 7;
       } else {
-        if (n >= 65 and n <= 90)  // Convert upper case character value to lower case character value
+        if (n >= 65 and n <= 90)  // Convert upper case to lower case
           n2 = n + 32;    // python example: ord('A') = 65. ord('a') = 97
         else
           n2 = n;
         c2 = static_cast<char>(n2);  // convert back to ASCII
-        if (morse_txt_dict.find(c2) == morse_txt_dict.end()) {  // look-up the character in the dictionary
+        if (morse_txt_dict.find(c2) == morse_txt_dict.end()) {
           Serial.printf("character \'%s\' not found in morse_txt_dict\n", n2);
         } else {
-          // Found the character in the dictionary. Extract the list and assign it to a variable
+          // Extract the list and assign it to a variable
           lst = morse_txt_dict[c2];
           if (my_debug) {
             Serial.print(F("Sending character "));
@@ -364,7 +383,7 @@ void send_morse() {
               }
               Serial.println("]");
             }
-            for (j = 0; j < le2; j++) { // Handle the list
+            for (j = 0; j < le2; j++) {
               if (lst[j] == 2) {
                 if (my_debug)
                   Serial.println(F("Sending a dash"));
@@ -372,7 +391,10 @@ void send_morse() {
                   Serial.print("---");
                 //Serial.printf("tone_dash.modal = %d\n", tone_dash.modal);
                 unit_count += 3;
-                writeSize = echoSPKR.playBeep(tone_dash);  // Send the dash
+#ifdef USE_AUDIO_VIA_PORT_B
+                digitalWrite(GROVE_PIN1, HIGH);
+#endif
+                writeSize = echoSPKR.playBeep(tone_dash);
                 //writeSize = echoSPKR.playBeep(tone_dash.freq, tone_dash.time_ms, tone_dash.maxval, tone_dash.modal);
               } else if (lst[j] == 1) {
                 if (my_debug)
@@ -381,7 +403,11 @@ void send_morse() {
                   Serial.print(".");
                 //Serial.printf("tone_dot.modal = %d\n", tone_dot.modal);
                 unit_count += 1;
-                writeSize = echoSPKR.playBeep(tone_dot);  // Send the dot
+#ifdef USE_AUDIO_VIA_PORT_B
+                digitalWrite(GROVE_PIN1, HIGH);
+#endif
+                writeSize = echoSPKR.playBeep(tone_dot);
+
                 //echoSPKR.playBeep(tone_dot.freq, tone_dot.time_ms, tone_dot.maxval, tone_dot.modal);
               }
               // if (writeSize > 0) {
@@ -395,7 +421,10 @@ void send_morse() {
                   Serial.println(F("unit space delay"));
                 if (my_morse_debug)
                   Serial.print(" ");
-                delay(dly1); // wait for a unit space time
+                delay(dly1); // was: (dly1)
+#ifdef USE_AUDIO_VIA_PORT_B
+                digitalWrite(GROVE_PIN1, LOW);
+#endif
                 unit_count += 1;
               }
             }
@@ -404,14 +433,20 @@ void send_morse() {
                 Serial.println(F("word space delay"));
               if (my_morse_debug)
                 Serial.print("|  7  |");
-              delay(dly7);  // wait for a word space time
+              delay(dly7);
+#ifdef USE_AUDIO_VIA_PORT_B
+              digitalWrite(GROVE_PIN1, LOW);
+#endif
               unit_count += 7;
             } else {
               if (my_debug)
                 Serial.println(F("character space delay"));
               if (my_morse_debug)
                 Serial.print("|3|");
-              delay(dly3);  // wait for a character space time
+              delay(dly3);
+#ifdef USE_AUDIO_VIA_PORT_B
+              digitalWrite(GROVE_PIN1, LOW);
+#endif
               unit_count += 3;
             }
           }
@@ -424,7 +459,7 @@ void send_morse() {
       Serial.print(F("Units sent = "));
       Serial.printf("%d\n", unit_count);
     }
-    word_count += 1;  // increase the word sent count
+    word_count += 1;
   }
   Serial.print(F("Number of units sent = "));
   Serial.printf("%d, ", unit_count);
@@ -446,6 +481,11 @@ void setup()
 #ifdef USE_DUALBTN 
   pinMode(GROVE_PIN1, INPUT); // Set the first pin of GROVE Port as input (Yellow)
   pinMode(GROVE_PIN2, INPUT); // Set the second pin of GROVE B as input (White)
+#endif
+
+#ifdef USE_AUDIO_VIA_PORT_B
+  pinMode(GROVE_PIN1, OUTPUT);
+  digitalWrite(GROVE_PIN1, LOW);
 #endif
 
   // Note that Serial.begin() is started by M5.begin()

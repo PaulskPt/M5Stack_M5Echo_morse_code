@@ -4,32 +4,37 @@ PURPOSE:
 Create morse code audio using a M5Stack M5Echo device.
 
 VERSIONS:
-  There are three versions of this software. 
+  There are three versions of this software.
+  ```
   a) a one device setup;
   b) a two devices setup;
   c) a morse code speed test.
-
+  ```
   In the ```src``` folder are two subfolders, one for each setup version.
 
 Hardware used:
+```
     In the one device setup version:
     1) M5Stack M5Echo;
     2) M5Stack Dualbutton unit;
     In the two device setup version also:
     3) a second microcontroller board, in my case an iLabs cPico (2035) board.
-
+```
 The software consists of:
 In the one device setup version:
+```
 a) an Arduino sketch that runs on the M5Echo device.
-
+```
 In the two device setup version:
+```
 a) an Arduino sketch that runs on the M5Echo device (a different, more lines of code, compared to the one device setup version);
 b) a MicroPython script to run on the second device, in my case an iLabs cPico (RP2350).
-
+```
 In the morse code speed test:
+```
 a) an Arduino sketch that runs on the M5Echo device (one device setup version).
    Note that in this sketch, lines 226-254, show how the morse code is timed.
-
+```
 SHORT DESCRIPTION:
 
 THE M5ECHO DEVICE

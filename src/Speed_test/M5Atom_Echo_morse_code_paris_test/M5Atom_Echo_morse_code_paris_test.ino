@@ -115,19 +115,11 @@ beep btn_tone2 =
 // the characters that are in the text string to send in morse code
 // in the array {2,1}, the 1 represents a dot, the 2 a dash.
 std::unordered_map<char, std::vector<int>> morse_txt_dict = {
-  {'7',{2,2,1,1,1}},
   {'a', {1,2}},
-  {'c', {2, 1, 2, 1}},
-  {'d', {2, 1, 1}},
-  {'e', {1}},
-  {'g', {2,2,1}},
   {'i', {1,1}},
-  {'k', {2, 1, 2}},
   {'p', {1,2,2,1}},
-  {'q', {2, 2, 1, 2}},
   {'r', {1,2,1}},
   {'s', {1,1,1}},
-  {'t', {2}}
 };
 
 void dot_dash_time() {

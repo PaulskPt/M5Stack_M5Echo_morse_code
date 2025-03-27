@@ -79,10 +79,9 @@ The MicroPython script running on the second device (in my case: the iLabs cPico
 determines the timing for a good morse code spacing and rythm.
 
 Experience with the two devices setup:
-Initially I criated the two devices setup. I wanted to learn the use of RP2040/RP2350
-Programmable Input/Outputs (PIO).
-During tests I was not satisfied with the timing of the dots and dashes audible
-through the speaker of the M5Echo when controlled by a second microcontroller board.
+Initially I criated the two devices setup. During tests I was not satisfied with the 
+timing of the dots and dashes audible through the speaker of the M5Echo when controlled 
+by a second microcontroller board.
 I have reason to believe that other processes running on core 0 of the M5Echo 
 caused unreliable timing in the morse code produced. I already tried to use semaphore 
 techniques however I was not satisfied with the outcome, so I removed the

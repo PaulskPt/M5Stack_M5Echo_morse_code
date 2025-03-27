@@ -1,0 +1,375 @@
+Wednesday 2025-03-26 21h13
+
+
+Board: M5Stack M5Atom Echo
+
+IDE: Arduino v2.3.4
+
+Sketch: M5Atom_Echo_morse_code_paris_test.ino  (single device version)
+
+Monitor output
+
+
+loop(): entering the while loop...
+loop(): ESP.getFreeHeap = 310640
+send_morse(): Starting...
+fq = 3000 Hz
+dot_dash_time(): tone_dot.time_ms  set to: 100 mSeconds
+                 tone_dash.time_ms set to: 300 mSeconds
+Text to send = "paris", length = 5
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 57
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 114
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 171
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 228
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 285
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 342
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 399
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 456
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 513
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 570
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 627
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 684
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 741
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 798
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 855
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 912
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 969
+One minute limit reached.
+Number of words sent: 17
+This equals to a morse code speed of 17 words/minute
+
+-------------------------------------------
+23h58 pt
+
+loop(): entering the while loop...
+loop(): ESP.getFreeHeap = 310632
+send_morse(): Starting...
+fq = 3000 Hz
+dot_dash_time(): tone_dot.time_ms  set to: 100 mSeconds
+                 tone_dash.time_ms set to: 300 mSeconds
+Text to send = "paris", length = 5
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 57
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 114
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 171
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 228
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 285
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 342
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 399
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 456
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 513
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 570
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 627
+. --- --- .|3|. ---|3|. --- .|3|. .|3|send_morse(): button red pressed. Exiting function
+loop(): dualbutton red pressed
+set_speed(): param speedChg = 20
+set_speed(): New values for dly1-dly7
+dly1: 80, dly2: 160, dly3: 230, dly7 230
+set_speed(): delay_mult_compensation used = 1.200000
+dot_dash_time(): tone_dot.time_ms  set to: 120 mSeconds
+                 tone_dash.time_ms set to: 360 mSeconds
+				 
+-------------------------------------------------------------------------------
+2025-03-27 10h41 pt  (after pressing the reset button on the M5Atom Echo:
+-------------------------------------------------------------------------------
+ets Jun  8 2016 00:22:57
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 188777542, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:1
+load:0x3fff0030,len:1344
+load:0x40078000,len:13964
+load:0x40080400,len:3600
+entry 0x400805f0
+M5Atom initializing...OK
+M5Stack M5Atom Echo new "ATOMECHOSPKR class" beep test
+E (79) I2S: i2s_driver_uninstall(2048): I2S port 0 has not installed
+
+loop(): entering the while loop...
+loop(): ESP.getFreeHeap = 310616
+send_morse(): Starting...
+fq = 3000 Hz
+dot_dash_time(): tone_dot.time_ms  set to: 100 mSeconds
+                 tone_dash.time_ms set to: 300 mSeconds
+Text to send = "paris", length = 5
+Values for dly1-dly7
+dly1: 100, dly2: 200, dly3: 300, dly7: 700
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 57
+. --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+All characters sent
+Units sent = 114
+. --- --- .|3|. ---|3|
+send_morse(): button red pressed. Exiting function
+
+--------------------------------------------------------------------------------------------------
+2025-03-27 11h00 pt  (after adding word numer in front of each line with morse code representation
+--------------------------------------------------------------------------------------------------
+
+loop(): entering the while loop...
+loop(): ESP.getFreeHeap = 310632
+send_morse(): Starting...
+fq = 3000 Hz
+dot_dash_time(): tone_dot.time_ms  set to: 100 mSeconds
+                 tone_dash.time_ms set to: 300 mSeconds
+Text to send = "paris", length = 5
+Values for dly1-dly7
+dly1: 100, dly2: 200, dly3: 300, dly7: 700
+ 1) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 2) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 3) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 4) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 5) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 6) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 7) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 8) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 9) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+10) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+11) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+
+One minute limit reached.
+Number of units sent = 627
+Number of words sent: 11
+This equals to a morse code speed of 11 words/minute
+
+-------------------------------------------------------------------------
+2025-03-27 11h06 pt  (after some changes in the presentation of dly1-dly7
+-------------------------------------------------------------------------
+
+loop(): entering the while loop...
+loop(): ESP.getFreeHeap = 310632
+send_morse(): Starting...
+fq = 3000 Hz
+dot_dash_time(): tone_dot.time_ms  set to: 100 mSeconds
+                 tone_dash.time_ms set to: 300 mSeconds
+Text to send = "paris", length = 5
+Values for dly1-dly7:
+dly1: 100, dly2: 200, dly3: 300, dly7: 700 mSeconds
+ 1) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 2) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 3) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 4) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 5) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 6) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 7) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 8) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 9) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+10) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+11) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+
+One minute limit reached.
+Number of units sent = 627
+Number of words sent: 11
+This equals to a morse code speed of 11 words/minute
+
+--------------------------------------------------------------------------------------------
+2025-03-27 11h15 pt  (after some changes in the presentation of tone dot (and dash) freqency
+--------------------------------------------------------------------------------------------
+loop(): entering the while loop...
+loop(): ESP.getFreeHeap = 310632
+send_morse(): Starting...
+tone dot (and dash) frequency = 1200 Hz
+dot_dash_time(): tone_dot.time_ms  set to: 100 mSeconds
+                 tone_dash.time_ms set to: 300 mSeconds
+Text to send = "paris", length = 5
+Values for dly1-dly7:
+dly1: 100, dly2: 200, dly3: 300, dly7: 700 mSeconds
+ 1) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 2) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 3) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 4) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 5) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 6) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 7) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 8) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 9) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+10) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+11) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+
+One minute limit reached.
+Number of units sent = 627
+Number of words sent: 11
+This equals to a morse code speed of 11 words/minute
+
+-------------------------------------------------------------------------------------------------
+2025-03-27 11h24 pt  (after some changes in the presentation of added calculation: units per word
+-------------------------------------------------------------------------------------------------
+
+loop(): entering the while loop...
+loop(): ESP.getFreeHeap = 310632
+send_morse(): Starting...
+tone dot (and dash) frequency = 1200 Hz
+dot_dash_time(): tone_dot.time_ms  set to: 100 mSeconds
+                 tone_dash.time_ms set to: 300 mSeconds
+Text to send = "paris", length = 5
+Values for dly1-dly7:
+dly1: 100, dly2: 200, dly3: 300, dly7: 700 mSeconds
+ 1) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 2) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 3) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 4) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 5) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 6) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 7) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 8) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 9) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+10) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+11) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+         11     3   5   3    7    3  3  3   5     7    = 50    *  11 = 550
+One minute limit reached.
+Number of units sent = 627, this is 57 units per word.
+Number of words sent: 11.
+This equals to a morse code speed of 11 words/minute.
+
+
+-----------------------------------------------------------------
+2025-03-27 12h33 pt  (after some changes in the counting of units
+-----------------------------------------------------------------
+
+--------------------
+Compile/Link output:
+--------------------
+Sketch uses 575521 bytes (18%) of program storage space. Maximum is 3145728 bytes.
+Global variables use 29968 bytes (9%) of dynamic memory, leaving 297712 bytes for local variables. Maximum is 327680 bytes.
+esptool.py v4.5.1
+Serial port COM34
+Connecting......
+Chip is ESP32-PICO-D4 (revision v1.1)
+Features: WiFi, BT, Dual Core, 240MHz, Embedded Flash, VRef calibration in efuse, Coding Scheme None
+Crystal is 40MHz
+MAC: e8:6b:ea:21:49:7c
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 1500000
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00005fff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+Flash will be erased from 0x0000e000 to 0x0000ffff...
+Flash will be erased from 0x00010000 to 0x0009cfff...
+Compressed 18992 bytes to 13110...
+Writing at 0x00001000... (100 %)
+Wrote 18992 bytes (13110 compressed) at 0x00001000 in 0.4 seconds (effective 413.2 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 137...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (137 compressed) at 0x00008000 in 0.0 seconds (effective 511.6 kbit/s)...
+Hash of data verified.
+Compressed 8192 bytes to 47...
+Writing at 0x0000e000... (100 %)
+Wrote 8192 bytes (47 compressed) at 0x0000e000 in 0.1 seconds (effective 682.5 kbit/s)...
+Hash of data verified.
+Compressed 575888 bytes to 290011...
+Writing at 0x00010000... (5 %)
+Writing at 0x0001b39a... (11 %)
+Writing at 0x0002beb1... (16 %)
+Writing at 0x0003b18d... (22 %)
+Writing at 0x0004080a... (27 %)
+Writing at 0x0004627f... (33 %)
+Writing at 0x0004ba6b... (38 %)
+Writing at 0x00050e4c... (44 %)
+Writing at 0x00056735... (50 %)
+Writing at 0x0005bf55... (55 %)
+Writing at 0x00062f2a... (61 %)
+Writing at 0x0006c7b8... (66 %)
+Writing at 0x00074e4e... (72 %)
+Writing at 0x0007b148... (77 %)
+Writing at 0x0008335d... (83 %)
+Writing at 0x0008b743... (88 %)
+Writing at 0x000935ba... (94 %)
+Writing at 0x000988f8... (100 %)
+Wrote 575888 bytes (290011 compressed) at 0x00010000 in 4.7 seconds (effective 989.6 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+
+---------------------
+Serial monitor output
+---------------------
+loop(): ESP.getFreeHeap = 310632
+send_morse(): Starting...
+tone dot (and dash) frequency = 1200 Hz
+dot_dash_time(): tone_dot.time_ms  set to: 100 mSeconds
+                 tone_dash.time_ms set to: 300 mSeconds
+Text to send = "paris", length = 5
+Values for dly1-dly7:
+dly1: 100, dly2: 200, dly3: 300, dly7: 700 mSeconds
+ 1) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 2) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 3) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 4) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 5) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 6) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 7) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 8) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+ 9) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+10) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+11) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+12) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+13) . --- --- .|3|. ---|3|. --- .|3|. .|3|. . .|  7  |
+
+One minute limit reached.
+Number of units sent = 650, this is 50 units per word.
+Number of words sent: 13.
+This equals to a morse code speed of 13 words/minute.
+
+----------------------------------------------------------------

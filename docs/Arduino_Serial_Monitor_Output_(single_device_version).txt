@@ -1,0 +1,30 @@
+Wednesday 2025-03-26 18h59
+
+
+Board: M5Stack M5Atom Echo
+
+IDE: Arduino v2.3.4
+
+Sketch: M5Atom_Echo_morse_code_test.ino  (single device version)
+
+Monitor output
+
+
+loop(): entering the while loop...
+loop(): ESP.getFreeHeap = 310856
+send_morse(): Starting...
+fq = 3000 Hz
+dot_dash_time(): tone_dot.time_ms  set to: 100 mSeconds
+                 tone_dash.time_ms set to: 300 mSeconds
+Text to send = "cq cq cq de ct7agr ct7agr ct7agr k ", length = 35
+--- . --- .|3|--- --- . ---|  7  |
+--- . --- .|3|--- --- . ---|  7  |
+--- . --- .|3|--- --- . ---|  7  |
+--- . .|3|.|  7  |
+--- . --- .|3|---|3|--- --- . . .|3|. ---|3|--- --- .|3|. --- .|  7  |
+--- . --- .|3|---|3|--- --- . . .|3|. ---|3|--- --- .|3|. --- .|  7  |
+--- . --- .|3|---|3|--- --- . . .|3|. ---|3|--- --- .|3|. --- .|  7  |
+--- . ---|  7  |
+
+All characters sent
+Units sent = 346

@@ -89,7 +89,8 @@ ATOMECHOSPKR echoSPKR;
 // +-------+-----------+-------------+
 // | dly1  |    80     |    13       |
 // +-------+-----------+-------------+
-
+// | dly1  |    90     |    12       |
+// +-------+-----------+-------------+
 uint16_t dly1 = 50;       // unit delay
 uint16_t dly3 = dly1 * 3; // character delay
 uint16_t dly7 = dly1 * 7; // word delay

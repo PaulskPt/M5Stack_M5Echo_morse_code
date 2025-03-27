@@ -424,7 +424,7 @@ void send_morse() {
       Serial.print(F("Units sent = "));
       Serial.printf("%d\n", unit_count);
     }
-    word_count += 1;
+    word_count += 1;  // increase the word sent count
   }
   Serial.print(F("Number of units sent = "));
   Serial.printf("%d, ", unit_count);

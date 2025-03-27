@@ -61,6 +61,8 @@ In the two device setup:
 
 THE SECOND DEVICE (EVENTUALLY)
 
+I created this second version because I wanted to increase my experience with programming
+of the ```Programmable Input/Output``` (PIO) peripheral of the RP2040/RP2350.
 Instead of creating audio morse code under control of an Arduino sketch running on the
 M5Echo device, you can use a second microcontroller board to send morse code
 dot and dash commands. The dash command by sending a logical state '0' (= active) 

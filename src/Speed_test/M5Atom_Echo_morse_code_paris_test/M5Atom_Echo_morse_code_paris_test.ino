@@ -326,25 +326,25 @@ void send_morse() {
         return;
       }
   #endif
-      c = txt[i];
+      c = txt[i];  // extract the indexed character from the char string txt
       n = static_cast<int>(c); // Calculate the ASCII value
-      if (n == 32) {
+      if (n == 32) {  // do we have a word space?
         if (my_debug)
           Serial.println(F("word space delay"));
         if (my_morse_debug)
           Serial.print("|  7  |\n");
-        delay(dly7);
-        unit_count += 7;
+        delay(dly7);  // wait for a word space time
+        unit_count += 7; // update the unit count
       } else {
-        if (n >= 65 and n <= 90)  // Convert upper case to lower case
+        if (n >= 65 and n <= 90)  // Convert upper case character value to lower case character value
           n2 = n + 32;    // python example: ord('A') = 65. ord('a') = 97
         else
           n2 = n;
         c2 = static_cast<char>(n2);  // convert back to ASCII
-        if (morse_txt_dict.find(c2) == morse_txt_dict.end()) {
+        if (morse_txt_dict.find(c2) == morse_txt_dict.end()) {  // look-up the character in the dictionary
           Serial.printf("character \'%s\' not found in morse_txt_dict\n", n2);
         } else {
-          // Extract the list and assign it to a variable
+          // Found the character in the dictionary. Extract the list and assign it to a variable
           lst = morse_txt_dict[c2];
           if (my_debug) {
             Serial.print(F("Sending character "));
@@ -364,7 +364,7 @@ void send_morse() {
               }
               Serial.println("]");
             }
-            for (j = 0; j < le2; j++) {
+            for (j = 0; j < le2; j++) { // Handle the list
               if (lst[j] == 2) {
                 if (my_debug)
                   Serial.println(F("Sending a dash"));
@@ -372,7 +372,7 @@ void send_morse() {
                   Serial.print("---");
                 //Serial.printf("tone_dash.modal = %d\n", tone_dash.modal);
                 unit_count += 3;
-                writeSize = echoSPKR.playBeep(tone_dash);
+                writeSize = echoSPKR.playBeep(tone_dash);  // Send the dash
                 //writeSize = echoSPKR.playBeep(tone_dash.freq, tone_dash.time_ms, tone_dash.maxval, tone_dash.modal);
               } else if (lst[j] == 1) {
                 if (my_debug)
@@ -381,7 +381,7 @@ void send_morse() {
                   Serial.print(".");
                 //Serial.printf("tone_dot.modal = %d\n", tone_dot.modal);
                 unit_count += 1;
-                writeSize = echoSPKR.playBeep(tone_dot);
+                writeSize = echoSPKR.playBeep(tone_dot);  // Send the dot
                 //echoSPKR.playBeep(tone_dot.freq, tone_dot.time_ms, tone_dot.maxval, tone_dot.modal);
               }
               // if (writeSize > 0) {
@@ -395,7 +395,7 @@ void send_morse() {
                   Serial.println(F("unit space delay"));
                 if (my_morse_debug)
                   Serial.print(" ");
-                delay(dly1); // was: (dly1)
+                delay(dly1); // wait for a unit space time
                 unit_count += 1;
               }
             }
@@ -404,14 +404,14 @@ void send_morse() {
                 Serial.println(F("word space delay"));
               if (my_morse_debug)
                 Serial.print("|  7  |");
-              delay(dly7);
+              delay(dly7);  // wait for a word space time
               unit_count += 7;
             } else {
               if (my_debug)
                 Serial.println(F("character space delay"));
               if (my_morse_debug)
                 Serial.print("|3|");
-              delay(dly3);
+              delay(dly3);  // wait for a character space time
               unit_count += 3;
             }
           }

@@ -68,8 +68,6 @@ bool my_debug = false;
 #define GROVE_PIN2 32 // Define the second pin of Port B (White wire)
 #endif
 
-int debounce_delay = 500; // mSec
-
 CRGB leds[NUM_LEDS];
 
 enum my_colors {RED=0, GREEN, BLUE, WHITE, BLACK};
@@ -78,22 +76,25 @@ unsigned long start_t = millis();
 
 ATOMECHOSPKR echoSPKR;
 // +-------+-----------+-------------+
-// | var   | milli-    | morse speed |
-// |       | sonds     | (wpm)       |
+// | var   |  milli-   | morse speed |
+// |       |  sonds    | (wpm)       |
 // +-------+-----------+-------------+
-// | dly1  |    10     |    30       |
+// | dly1  |    40     |    26       |
 // +-------+-----------+-------------+
-// | dly1  |    20     |    26       |
+// | dly1  |    50     |    21       |
 // +-------+-----------+-------------+
-// | dly1  |    25     |    25       |
+// | dly1  |    60     |    17       |
 // +-------+-----------+-------------+
-// | dly1  |    50     |    19       |
+// | dly1  |    70     |    15       |
 // +-------+-----------+-------------+
-// | dly1  |   100     |    13       |
+// | dly1  |    80     |    13       |
 // +-------+-----------+-------------+
+
 uint16_t dly1 = 50;       // unit delay
 uint16_t dly3 = dly1 * 3; // character delay
 uint16_t dly7 = dly1 * 7; // word delay
+
+int debounce_delay = 1000; // mSec
 
 // Define two beep tones
 beep tone_dot = 
@@ -163,38 +164,109 @@ void dot_dash_time() {
   delete[] spaces; // Free memory when done
 }
 
+void reset_tone_values() {
+  tone_dot.freq     = 1200;
+  //tone_dot.time_ms  = set by function ck_dualbtn_and_set_speed()
+  tone_dot.maxval   = 10000;
+  tone_dot.modal    = true;
+
+  tone_dash.freq    = 1200;
+  //tone_dash.time_ms  = set by function ck_dualbtn_and_set_speed()
+  tone_dash.maxval  = 10000;
+  tone_dash.modal   = true;
+}
+
 void show_delays() {
   Serial.println(F("Values for dly1, dly3 and dly7:"));
   Serial.printf("dly1: %d, dly3: %d, dly7: %d mSeconds\n", dly1, dly3, dly7);
 }
 
-void set_speed(int speedChg) {
-  static constexpr const char txt0[] PROGMEM = "set_speed(): ";
-  
-  Serial.print(txt0);
-  Serial.printf("param speedChg = %d\n", speedChg);
-  //if (speedChg == NULL)
-  //  return;
-  if (speedChg <= 0)
-    speedChg = 0;
-  if (speedChg > 100)
-    speedChg = 100;
-  tone_dot.time_ms = 100 + speedChg;
-  if (tone_dot.time_ms < 100)
-    tone_dot.time_ms = 100;
-  if (tone_dot.time_ms > 10000)
-    tone_dot.time_ms = 10000;
+const int tone_time_lst[] = {10, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200};
+const int unit_time_lst[] = { 5, 10, 20, 30, 40,  50,  60,  70,  80,  90, 100};
+int le_speeds_lst = sizeof(tone_time_lst);
+int speeds_idx = 5; // index to 100
 
-  dly1 = tone_dot.time_ms;
+#ifdef USE_DUALBTN
+int blu_last_value, red_last_value = 0;
+
+void ck_dualbtn_and_set_speed() {
+  static constexpr const char txt0[] PROGMEM = "ck_dualbtn_and_set_speed(): ";
+  int blu_value= 0;
+  int red_value = 0;
+  int tone_dly1 = 100;
+  int unit_dly1 = 50;
+  bool btn_blu_pressed = false;
+  bool btn_red_pressed = false;
+  red_value = digitalRead(GROVE_PIN1);  // read the value of BUTTON. 读取33号引脚的值
+  blu_value = digitalRead(GROVE_PIN2);
+
+  if (red_value == 1 && blu_value == 1)
+    return;  // No button pressed
+
+  btn_red_pressed = red_value == 0 ? true : false;
+  btn_blu_pressed = blu_value == 0 ? true : false;
+
+  // Debounce wait
+  if (btn_red_pressed) {
+    while (red_value == 0) {
+      red_value = digitalRead(GROVE_PIN1);
+      delay(100);
+    }
+    Serial.print(txt0);
+    Serial.print(F("red button released? "));
+    Serial.printf("%s\n", (red_value == 1) ? "Yes" : "No ");
+  }
+  else if (btn_blu_pressed) {
+    // Debounce wait
+    while (blu_value == 0) {
+      blu_value = digitalRead(GROVE_PIN2);
+      delay(100);
+    }
+    Serial.print(txt0);
+    Serial.print(F("blue button released? "));
+    Serial.printf("%s\n", (blu_value == 1) ? "Yes" : "No ");
+  }
+  tone_dly1 = tone_dot.time_ms;
+  unit_dly1 = dly1;
+
+  if (btn_red_pressed) { // was if (red_value != red_last_value) {
+    Serial.print(txt0);
+    Serial.println(F("dualbutton red pressed"));
+    speeds_idx += 1;
+    if (speeds_idx > le_speeds_lst-1)
+      speeds_idx = le_speeds_lst -1;
+    tone_dly1 = tone_time_lst[speeds_idx];
+    unit_dly1  = unit_time_lst[speeds_idx];
+    red_value = -1;
+    red_last_value = (btn_red_pressed == true) ? 0 : 1;
+  }
+  else if (btn_blu_pressed) { // was if (blu_value != blu_last_value) {
+    Serial.print(txt0);
+    Serial.println(F("dualbutton blue pressed"));
+    
+    speeds_idx -= 1;
+    if (speeds_idx < 0)
+      speeds_idx = 0;
+    tone_dly1 = tone_time_lst[speeds_idx];
+    unit_dly1 = unit_time_lst[speeds_idx];
+    blu_value = -1;
+    blu_last_value = (btn_blu_pressed == true) ? 0 : 1;
+  }
+
+  tone_dot.time_ms = tone_dly1;
+  tone_dash.time_ms = 3 * tone_dot.time_ms; // keep ratio 3 : 1
+  reset_tone_values();
+
+  dly1 = unit_dly1;
   dly3 = dly1 * 3;
   dly7 = dly1 * 7;
-
+  
   Serial.print(txt0);
   show_delays();
   
-  tone_dash.time_ms = 3 * tone_dot.time_ms; // keep ratio 3 : 1
   dot_dash_time();
 }
+#endif
 
 void LedColor(my_colors color)
 {
@@ -291,6 +363,8 @@ void send_morse() {
   Serial.println(F("Starting..."));
   Serial.print(F("tone dot (and dash) frequency = "));
   Serial.printf("%d Hz\n", tone_dot.freq);
+  Serial.printf("tone_dot.modal  = %s\n", tone_dot.modal  == 1 ? "true": "false");
+  Serial.printf("tone_dash.modal = %s\n", tone_dash.modal == 1 ? "true": "false");
   echoSPKR.setVolume(1);  // Initial volume (in class) set to 8.
   dot_dash_time();
   const char txt[] = "paris";
@@ -518,13 +592,6 @@ void loop() {
   static constexpr const char txt0[] PROGMEM = "loop(): ";
   
   bool start = true;
-#ifdef USE_DUALBTN
-  int speed_change = 0;
-  int speed_step = 20;
-  int speed_max = 10000;
-  int blu_value= 0, blu_last_value = 0;
-  int red_value = 0, red_last_value = 0;
-#endif
 
   delay(5000); // Wait for user to clear the serial monitor window
   Serial.print('\n');
@@ -544,50 +611,9 @@ void loop() {
   #endif
 
 #ifdef USE_DUALBTN
-    red_value = digitalRead(GROVE_PIN1);  // read the value of BUTTON. 读取33号引脚的值
-    blu_value = digitalRead(GROVE_PIN2);
-    
-    if (red_value != red_last_value || blu_value != blu_last_value) { 
-      if (my_debug) {
-        Serial.print(txt0);
-        Serial.printf("red_value = %d, blu_value = %d\n", red_value, blu_value);
-      }
-    }
-    if (red_value != red_last_value) {
-      if (red_value == 0) {
-        Serial.print(txt0);
-        Serial.println(F("dualbutton red pressed"));
-        // Debounce wait
-        while (red_value == 0) {
-          red_value = digitalRead(GROVE_PIN1);
-          delay(debounce_delay);
-        }
-        speed_change += speed_step;
-        if (speed_change > speed_max)
-          speed_change = speed_max;
-        set_speed(speed_change);
-        red_value = -1;
-      }
-      red_last_value = red_value;
-    }
-    if (blu_value != blu_last_value) {
-      if (blu_value == 0) {
-        Serial.print(txt0);
-        Serial.println(F("dualbutton blue pressed"));
-        // Debounce wait
-        while (blu_value == 0) {
-          blu_value = digitalRead(GROVE_PIN1);
-          delay(debounce_delay);
-        }
-        speed_change -= speed_step;
-        if (speed_change < 0)
-          speed_change = 0;
-        set_speed(speed_change);
-        blu_value = -1;
-      }
-      blu_last_value = blu_value;
-    }
+    ck_dualbtn_and_set_speed();
 #endif
+
     if (M5.Btn.wasPressed()) {
       Serial.print(txt0);
       Serial.println(F("Button was pressed"));

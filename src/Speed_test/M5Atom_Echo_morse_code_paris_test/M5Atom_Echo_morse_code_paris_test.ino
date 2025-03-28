@@ -650,12 +650,10 @@ void loop() {
 
   while (true) {
   
-    #ifndef USE_ILABS_CPICO
     if (start) {
       start = false;
       send_morse();
     }
-  #endif
 
 #ifdef USE_DUALBTN
     set_speed();

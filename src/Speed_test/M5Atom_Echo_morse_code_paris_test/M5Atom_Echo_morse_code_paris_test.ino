@@ -97,7 +97,7 @@ uint16_t dly1 = 50;       // unit delay
 uint16_t dly3 = dly1 * 3; // character delay
 uint16_t dly7 = dly1 * 7; // word delay
 
-int debounce_delay = 1000; // mSec
+int debounce_delay = 100; // mSec
 
 // Define two beep tones
 beep tone_dot = 
@@ -218,7 +218,7 @@ void ck_dualbtn_and_set_speed() {
   if (btn_red_pressed) {
     while (red_value == 0) {
       red_value = digitalRead(GROVE_PIN1);
-      delay(100);
+      delay(debounce_delay);
     }
     Serial.print(txt0);
     Serial.print(txt1);
@@ -230,7 +230,7 @@ void ck_dualbtn_and_set_speed() {
     // Debounce wait
     while (blu_value == 0) {
       blu_value = digitalRead(GROVE_PIN2);
-      delay(100);
+      delay(debounce_delay);
     }
     Serial.print(txt0);
     Serial.print(txt1);

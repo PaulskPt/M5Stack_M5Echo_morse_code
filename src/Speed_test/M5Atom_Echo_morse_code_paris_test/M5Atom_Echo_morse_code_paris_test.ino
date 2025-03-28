@@ -50,7 +50,9 @@ bool my_debug = false;
 #define NUM_LEDS 1
 #define ATOMECHO_LED_PIN 27
 
-#define SHOW_UNITS
+// In function send_morse() print unit space indicator "|1|" 
+// between the dots and dashes.
+#define SHOW_UNITS  
 
 // Activate USE_DUALBTN if you want to use a M5Stack Dualbutton unit
 // to increase/decrease the speed of the morse (function in development)

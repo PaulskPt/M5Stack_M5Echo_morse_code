@@ -34,6 +34,7 @@
 * +--------------------------------------------------------------------+
 */
 
+#include <Arduino.h>
 #include <M5Atom.h>
 #include <FastLED.h>
 #include "AtomEchoSPKR.h"
@@ -48,6 +49,8 @@ bool my_debug = false;
 
 #define NUM_LEDS 1
 #define ATOMECHO_LED_PIN 27
+
+#define SHOW_UNITS
 
 // Activate USE_DUALBTN if you want to use a M5Stack Dualbutton unit
 // to increase/decrease the speed of the morse (function in development)
@@ -532,7 +535,11 @@ void send_morse() {
                 if (my_debug)
                   Serial.println(F("unit space delay"));
                 if (my_morse_debug)
+#ifdef SHOW_UNITS
+                  Serial.print("|1|");
+#else
                   Serial.print(" ");
+#endif
                 delay(dly1); // was: (dly1)
 #ifdef USE_AUDIO_VIA_PORT_B
                 digitalWrite(GROVE_PIN1, LOW);
@@ -544,7 +551,7 @@ void send_morse() {
               if (my_debug)
                 Serial.println(F("word space delay"));
               if (my_morse_debug)
-                Serial.print("|  7  |");
+                Serial.print("|   7   |");
               delay(dly7);
 #ifdef USE_AUDIO_VIA_PORT_B
               digitalWrite(GROVE_PIN1, LOW);
@@ -554,7 +561,7 @@ void send_morse() {
               if (my_debug)
                 Serial.println(F("character space delay"));
               if (my_morse_debug)
-                Serial.print("|3|");
+                Serial.print("| 3 |");
               delay(dly3);
 #ifdef USE_AUDIO_VIA_PORT_B
               digitalWrite(GROVE_PIN1, LOW);

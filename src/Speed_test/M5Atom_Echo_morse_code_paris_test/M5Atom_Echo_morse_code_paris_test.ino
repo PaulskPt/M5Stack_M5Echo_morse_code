@@ -79,6 +79,8 @@ ATOMECHOSPKR echoSPKR;  // Create an instance of the ATOMECHOSPKR class
 // | var   |  milli-   | morse speed |
 // |       |  sonds    | (wpm)       |
 // +-------+-----------+-------------+
+// | dly1  |    20     |    54       |
+// +-------+-----------+-------------+
 // | dly1  |    30     |    35       |
 // +-------+-----------+-------------+
 // | dly1  |    40     |    26       |
@@ -92,6 +94,8 @@ ATOMECHOSPKR echoSPKR;  // Create an instance of the ATOMECHOSPKR class
 // | dly1  |    80     |    13       |
 // +-------+-----------+-------------+
 // | dly1  |    90     |    12       |
+// +-------+-----------+-------------+
+// | dly1  |   100     |    10       |
 // +-------+-----------+-------------+
 uint16_t dly1 = 50;       // unit delay
 uint16_t dly3 = dly1 * 3; // character delay
@@ -172,9 +176,9 @@ void show_delays() {
   Serial.printf("dly1: %d, dly3: %d, dly7: %d mSeconds\n", dly1, dly3, dly7);
 }
 
-const int tone_time_lst[] = {20, 40, 60, 80, 100, 120, 140, 160, 180, 200};
-int le_speeds_lst = sizeof(tone_time_lst);
-int speeds_idx = 5; // index to 100
+const int tone_time_lst[] = {40, 60, 80, 100, 120, 140, 160, 180, 200};
+int le_tone_time_lst = sizeof(tone_time_lst)/sizeof(tone_time_lst[0]);
+int tone_time_lst_idx = 4; // index to 100
 
 #ifdef USE_DUALBTN
 int blu_last_value, red_last_value = 0;
@@ -186,6 +190,8 @@ void ck_dualbtn_and_set_speed() {
   static constexpr const char txt3[] PROGMEM = "pressed";
   static constexpr const char txt4[] PROGMEM = " red ";
   static constexpr const char txt5[] PROGMEM = " blue ";
+  static constexpr const char txt6[] PROGMEM = "tone_time_lst_idx changed to: ";
+  static constexpr const char txt7[] PROGMEM = "index reached. ";
   int blu_value= 0;
   int red_value = 0;
   int tone_dly1 = 100;
@@ -242,19 +248,45 @@ void ck_dualbtn_and_set_speed() {
   unit_dly1 = dly1;
 
   if (btn_red_pressed) {
-    speeds_idx += 1;
-    if (speeds_idx > le_speeds_lst-1)
-      speeds_idx = le_speeds_lst -1;
-    tone_dly1 = tone_time_lst[speeds_idx];
+    tone_time_lst_idx += 1;
+    if (tone_time_lst_idx > le_tone_time_lst-1) {
+      tone_time_lst_idx = le_tone_time_lst -1;
+      Serial.print(txt0);
+      Serial.print(F("maximum "));
+      Serial.print(txt7);
+      if (my_debug) {
+        Serial.printf("tone_time_lst_idx = %d, le_tone_time_lst-1 = %d, tone_time_lst[%d] = %d\n", 
+          tone_time_lst_idx, le_tone_time_lst-1, tone_time_lst_idx, tone_time_lst[tone_time_lst_idx]);
+      } else {
+        Serial.println();
+      }
+      Serial.print(txt0);
+      Serial.print(txt6);
+      Serial.printf("%d\n", tone_time_lst_idx);
+    }
+    tone_dly1 = tone_time_lst[tone_time_lst_idx];
     unit_dly1  = tone_dly1/2;
     red_value = -1;
     red_last_value = (btn_red_pressed == true) ? 0 : 1;
   }
   else if (btn_blu_pressed) {
-    speeds_idx -= 1;
-    if (speeds_idx < 0)
-      speeds_idx = 0;
-    tone_dly1 = tone_time_lst[speeds_idx];
+    tone_time_lst_idx -= 1;
+    if (tone_time_lst_idx <= 0) {
+      tone_time_lst_idx = 0;
+      Serial.print(txt0);
+      Serial.print(F("minimum "));
+      Serial.print(txt7);
+      if (my_debug) {
+        Serial.printf("tone_time_lst_idx = %d, le_tone_time_lst-1 = %d, tone_time_lst[%d] = %d\n", 
+          tone_time_lst_idx, le_tone_time_lst-1, tone_time_lst_idx, tone_time_lst[tone_time_lst_idx]);
+      } else {
+        Serial.println();
+      }
+      Serial.print(txt0);
+      Serial.print(txt6);
+      Serial.printf("%d\n", tone_time_lst_idx);
+    }
+    tone_dly1 = tone_time_lst[tone_time_lst_idx];
     unit_dly1 = tone_dly1/2;
     blu_value = -1;
     blu_last_value = (btn_blu_pressed == true) ? 0 : 1;
@@ -267,10 +299,10 @@ void ck_dualbtn_and_set_speed() {
   dly3 = dly1 * 3;
   dly7 = dly1 * 7;
   
+  dot_dash_time();
+
   Serial.print(txt0);
   show_delays();
-  
-  dot_dash_time();
 }
 #endif
 

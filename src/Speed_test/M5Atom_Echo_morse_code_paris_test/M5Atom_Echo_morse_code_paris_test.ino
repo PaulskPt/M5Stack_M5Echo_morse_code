@@ -172,7 +172,7 @@ void show_delays() {
   Serial.printf("dly1: %d, dly3: %d, dly7: %d mSeconds\n", dly1, dly3, dly7);
 }
 
-const int tone_time_lst[] = {10, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200};
+const int tone_time_lst[] = {20, 40, 60, 80, 100, 120, 140, 160, 180, 200};
 int le_speeds_lst = sizeof(tone_time_lst);
 int speeds_idx = 5; // index to 100
 

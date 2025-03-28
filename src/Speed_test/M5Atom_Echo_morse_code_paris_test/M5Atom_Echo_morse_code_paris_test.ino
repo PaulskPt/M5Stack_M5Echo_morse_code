@@ -212,6 +212,19 @@ void ck_dualbtn_and_set_speed() {
   btn_red_pressed = red_value == 0 ? true : false;
   btn_blu_pressed = blu_value == 0 ? true : false;
 
+  if (btn_red_pressed) {
+    Serial.print(txt0);
+    Serial.print(txt1);
+    Serial.print(txt4);
+    Serial.println(txt3);
+  }
+  else if (btn_blu_pressed) {
+    Serial.print(txt0);
+    Serial.print(txt1);
+    Serial.print(txt5);
+    Serial.println(txt3);
+  }
+
   // Debounce wait
   if (btn_red_pressed) {
     while (red_value == 0) {
@@ -239,11 +252,7 @@ void ck_dualbtn_and_set_speed() {
   tone_dly1 = tone_dot.time_ms;
   unit_dly1 = dly1;
 
-  if (btn_red_pressed) { // was if (red_value != red_last_value) {
-    Serial.print(txt0);
-    Serial.print(txt1);
-    Serial.print(txt4);
-    Serial.println(txt3);
+  if (btn_red_pressed) {
     speeds_idx += 1;
     if (speeds_idx > le_speeds_lst-1)
       speeds_idx = le_speeds_lst -1;
@@ -252,11 +261,7 @@ void ck_dualbtn_and_set_speed() {
     red_value = -1;
     red_last_value = (btn_red_pressed == true) ? 0 : 1;
   }
-  else if (btn_blu_pressed) { // was if (blu_value != blu_last_value) {
-    Serial.print(txt0);
-    Serial.print(txt1);
-    Serial.print(txt5);
-    Serial.println(txt3);
+  else if (btn_blu_pressed) {
     speeds_idx -= 1;
     if (speeds_idx < 0)
       speeds_idx = 0;

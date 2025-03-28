@@ -171,7 +171,6 @@ void show_delays() {
 }
 
 const int tone_time_lst[] = {10, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200};
-// const int unit_time_lst[] = { 5, 10, 20, 30, 40,  50,  60,  70,  80,  90, 100};
 int le_speeds_lst = sizeof(tone_time_lst);
 int speeds_idx = 5; // index to 100
 
@@ -245,7 +244,7 @@ void ck_dualbtn_and_set_speed() {
     if (speeds_idx > le_speeds_lst-1)
       speeds_idx = le_speeds_lst -1;
     tone_dly1 = tone_time_lst[speeds_idx];
-    unit_dly1  = tone_dly1/2; // was: = unit_time_lst[speeds_idx];
+    unit_dly1  = tone_dly1/2;
     red_value = -1;
     red_last_value = (btn_red_pressed == true) ? 0 : 1;
   }
@@ -254,7 +253,7 @@ void ck_dualbtn_and_set_speed() {
     if (speeds_idx < 0)
       speeds_idx = 0;
     tone_dly1 = tone_time_lst[speeds_idx];
-    unit_dly1 = tone_dly1/2; // was: unit_time_lst[speeds_idx];
+    unit_dly1 = tone_dly1/2;
     blu_value = -1;
     blu_last_value = (btn_blu_pressed == true) ? 0 : 1;
   }

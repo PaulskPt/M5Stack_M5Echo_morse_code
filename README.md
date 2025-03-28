@@ -22,7 +22,7 @@ In the one device setup version:
 ```
 In the two device setup version also:
 ```
-  3) a second microcontroller board, in my case an iLabs cPico (2035) board.
+  3) a second microcontroller board, in my case an iLabs cPico (2035A) board.
 ```
 The software consists of:
 
@@ -33,7 +33,7 @@ In the one device setup version:
 In the two device setup version:
 ```
   a) an Arduino sketch that runs on the M5Echo device (a different, more lines of code, compared to the one device setup version);
-  b) a MicroPython script to run on the second device, in my case an iLabs cPico (RP2350).
+  b) a MicroPython script to run on the second device, in my case an iLabs cPico (RP2350A).
 ```
 In the morse code speed test:
 ```
@@ -122,7 +122,7 @@ Links to product pages of the hardware used:
 
 - M5Stack M5Echo [info](https://shop.m5stack.com/products/atom-echo-smart-speaker-dev-kit?variant=34577853415588);
 - M5Stack Dualbutton unit [info](https://shop.m5stack.com/products/mini-dual-button-unit);
-- iLabs cPico (RP2350) [info](https://ilabs.se/product/cpico-rp2350/);
+- iLabs cPico (RP2350A) [info](https://ilabs.se/product/cpico-rp2350/);
 
 
 Known Issues:

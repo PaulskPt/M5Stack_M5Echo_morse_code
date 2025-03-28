@@ -165,18 +165,6 @@ void dot_dash_time() {
   delete[] spaces; // Free memory when done
 }
 
-void reset_tone_values() {
-  tone_dot.freq     = 1200;
-  //tone_dot.time_ms  = set by function ck_dualbtn_and_set_speed()
-  tone_dot.maxval   = 10000;
-  tone_dot.modal    = true;
-
-  tone_dash.freq    = 1200;
-  //tone_dash.time_ms  = set by function ck_dualbtn_and_set_speed()
-  tone_dash.maxval  = 10000;
-  tone_dash.modal   = true;
-}
-
 void show_delays() {
   Serial.println(F("Values for dly1, dly3 and dly7:"));
   Serial.printf("dly1: %d, dly3: %d, dly7: %d mSeconds\n", dly1, dly3, dly7);
@@ -273,7 +261,6 @@ void ck_dualbtn_and_set_speed() {
 
   tone_dot.time_ms = tone_dly1;
   tone_dash.time_ms = 3 * tone_dot.time_ms; // keep ratio 3 : 1
-  reset_tone_values();
 
   dly1 = unit_dly1;
   dly3 = dly1 * 3;

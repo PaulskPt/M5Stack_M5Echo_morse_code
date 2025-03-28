@@ -56,7 +56,7 @@ In the one device setup:
   When no morse code is sending, then the buttons of the M5 Dualbutton unit
   can be used to change the morse speed setting.
   Note that this speed change feature is under development and is not perfect yet.
-  Lines 78-93 contain a table that contains various settings of the ```unit_delay``` (dly1),
+  Lines 78-93 contain a table that shows various settings of the ```unit_delay``` (dly1),
   as a function of the actual morse code speed sent.
 
 In the two device setup:

@@ -818,3 +818,26 @@ Number of words sent: 54.
 This equals to a morse code speed of 54 words/minute.
 
 -------------------------------------------------------------------
+2025-03-28 13h059 utc.
+In function ck_dualbtn_and_set_speed() changed texts to be printed
+to the monitor window in case the minimum or maximum speed index
+has been reached.
+-------------------------------------------------------------------
+ck_dualbtn_and_set_speed(): dualbutton blue pressed
+ck_dualbtn_and_set_speed(): dualbutton blue released? Yes
+ck_dualbtn_and_set_speed(): minimum speed has been reached.       <<<=== Warning that the minimum speed has been reached
+ck_dualbtn_and_set_speed(): tone_time_lst_idx changed to: 0
+dot_dash_time(): tone_dot.time_ms  set to:  40 mSeconds
+                 tone_dash.time_ms set to: 120 mSeconds
+ck_dualbtn_and_set_speed(): Values for dly1, dly3 and dly7:
+dly1: 20, dly3: 60, dly7: 140 mSeconds
+
+
+ck_dualbtn_and_set_speed(): dualbutton red pressed
+ck_dualbtn_and_set_speed(): dualbutton red released? Yes
+ck_dualbtn_and_set_speed(): maximum speed has been reached.       <<<=== Warning that the maximum speed has been reached
+ck_dualbtn_and_set_speed(): tone_time_lst_idx changed to: 8
+dot_dash_time(): tone_dot.time_ms  set to: 200 mSeconds
+                 tone_dash.time_ms set to: 600 mSeconds
+ck_dualbtn_and_set_speed(): Values for dly1, dly3 and dly7:
+dly1: 100, dly3: 300, dly7: 700 mSeconds

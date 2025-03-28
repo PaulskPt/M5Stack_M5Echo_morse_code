@@ -191,7 +191,7 @@ void ck_dualbtn_and_set_speed() {
   static constexpr const char txt4[] PROGMEM = " red ";
   static constexpr const char txt5[] PROGMEM = " blue ";
   static constexpr const char txt6[] PROGMEM = "tone_time_lst_idx changed to: ";
-  static constexpr const char txt7[] PROGMEM = "index reached. ";
+  static constexpr const char txt7[] PROGMEM = "speed has been reached. ";
   int blu_value= 0;
   int red_value = 0;
   int tone_dly1 = 100;

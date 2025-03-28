@@ -156,12 +156,12 @@ void dot_dash_time() {
   Serial.print(txt0);
   Serial.print(F("tone_dot.time_ms  "));
   Serial.print(txt1);
-  Serial.print(tone_dot.time_ms);
+  Serial.printf("%3d", tone_dot.time_ms);
   Serial.println(F(" mSeconds"));
   Serial.print(spaces);
   Serial.print(F("tone_dash.time_ms "));
   Serial.print(txt1);
-  Serial.print(tone_dash.time_ms);
+  Serial.printf("%3d", tone_dash.time_ms);
   Serial.println(F(" mSeconds"));
 
   delete[] spaces; // Free memory when done

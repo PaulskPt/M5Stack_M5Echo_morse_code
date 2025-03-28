@@ -623,7 +623,7 @@ send_morse(): Starting...
 tone dot (and dash) frequency = 1200 Hz
 tone_dot.modal  = true
 tone_dash.modal = true
-dot_dash_time(): tone_dot.time_ms  set to: 60 mSeconds
+dot_dash_time(): tone_dot.time_ms  set to: 60 mSeconds  <<<=== line-up of value < 100 to be improved.
                  tone_dash.time_ms set to: 180 mSeconds
 Text to send = "paris", length = 5
 Values for dly1, dly3 and dly7:
@@ -668,3 +668,30 @@ One minute limit reached.
 Number of units sent = 1750, this is 50 units per word.
 Number of words sent: 35.
 This equals to a morse code speed of 35 words/minute.
+
+----------------------------------------------------------
+2025-03-28 12h02 utc. After changing make-up positioning 
+(line-up) of values tone_dot.time_ms and tone_dash.time_ms 
+after a change in function ck_dualbtn_and_set_speed().
+----------------------------------------------------------
+loop(): entering the while loop...
+loop(): ESP.getFreeHeap = 311160
+send_morse(): Starting...
+tone dot (and dash) frequency = 1200 Hz
+tone_dot.modal  = true
+tone_dash.modal = true
+dot_dash_time(): tone_dot.time_ms  set to: 100 mSeconds
+                 tone_dash.time_ms set to: 300 mSeconds
+Text to send = "paris", length = 5
+Values for dly1, dly3 and dly7:
+dly1: 50, dly3: 150, dly7: 350 mSeconds
+ 1) . --- --- .|3|. ---|3|. --- .|3|
+send_morse(): button red pressed. Exiting function
+ck_dualbtn_and_set_speed(): dualbutton blue pressed
+ck_dualbtn_and_set_speed(): dualbutton blue released? Yes
+ck_dualbtn_and_set_speed(): Values for dly1, dly3 and dly7:
+dly1: 40, dly3: 120, dly7: 280 mSeconds
+dot_dash_time(): tone_dot.time_ms  set to:  80 mSeconds   <<<=== line-up of value < 100 improved.
+                 tone_dash.time_ms set to: 240 mSeconds
+				 
+--------------------------------------------------------

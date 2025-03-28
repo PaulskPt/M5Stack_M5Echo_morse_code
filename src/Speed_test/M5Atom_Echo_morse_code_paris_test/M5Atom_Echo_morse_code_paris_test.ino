@@ -74,7 +74,7 @@ enum my_colors {RED=0, GREEN, BLUE, WHITE, BLACK};
 
 unsigned long start_t = millis();
 
-ATOMECHOSPKR echoSPKR;
+ATOMECHOSPKR echoSPKR;  // Create an instance of the ATOMECHOSPKR class
 // +-------+-----------+-------------+
 // | var   |  milli-   | morse speed |
 // |       |  sonds    | (wpm)       |

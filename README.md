@@ -97,14 +97,17 @@ THE M5ECHO DEVICE
 During one minute the word "paris" repeatedly will be send in morse code.
 At the end of the test, the number of times the word "paris" was sent will be printed.
 This value represents the speed in morse code (words per minute). 
-There are three global variables that determine the speed and the duration of 
+In the sketch there are three global variables that determine the speed and the duration of 
 the morse code being send. The variable ```dly1``` (unit delay) is created
 and set in line 94. The values of ```dly3``` (character delay) and ```dly7``` (word delay)
 are derived from variable dly1. The value of dly1 determines the speed the
-morse code will be send. In lines 80-93 of the Arduino sketch is a table that shows 
+morse code will be send. In lines 78-93 of the Arduino sketch is a table that shows 
 the relation between the value of dly1 and the morse speed being send.
-For example: when the value of dly1 is 50 (milliSeconds), 
-the morse speed will be 19 words per minute (wpm).
+For example: the default value of dly1 is 50 (milliSeconds). With this value 
+the morse speed will be 19 words per minute (wpm). The value of dly1 is derived from the
+setting of the global variable: tone_dot.time_ms as: ```dly1 = tone_dot.time_ms / 2```.
+And the global variable: ```tone_dash.time_ms``` is derived from the value of ```tone_dot.time_ms``` as:
+```tone_dash.time_ms = 3 * tone_dot.time_ms```. (see the function: ```ck_dualbtn_and_set_speed()```)
 
 
 ```

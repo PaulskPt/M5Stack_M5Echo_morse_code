@@ -100,8 +100,9 @@ This value represents the speed in morse code (words per minute).
 In the sketch there are three global variables that determine the speed and the duration of 
 the morse code being send. The variable ```dly1``` (unit delay) is created
 and set in line 94. The values of ```dly3``` (character delay) and ```dly7``` (word delay)
-are derived from variable dly1. The value of dly1 determines the speed the
-morse code will be send. In lines 78-93 of the Arduino sketch is a table that shows 
+are derived from variable dly1 as: dly3 = 3 * dly1 and dly7 = 7 * dly1. 
+The value of dly1 determines the speed the morse code will be send. 
+In lines 78-93 of the Arduino sketch is a table that shows 
 the relation between the value of dly1 and the morse speed being send.
 For example: the default value of dly1 is 50 (milliSeconds). With this value 
 the morse speed will be 19 words per minute (wpm). The value of dly1 is derived from the

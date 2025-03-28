@@ -11,7 +11,7 @@ There are three versions of this software.
   b) a two devices setup;
   c) a morse code speed test.
 ```
-In the ```src``` folder are two subfolders, one for each setup version.
+In the ```src``` folder are three subfolders, one for each software version.
 
 Hardware used:
 

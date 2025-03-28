@@ -109,7 +109,7 @@ For example: the default value of dly1 is 50 (milliSeconds). With this value
 the morse speed will be 19 words per minute (wpm). The value of dly1 is derived from the
 setting of the global variable: tone_dot.time_ms as: ```dly1 = tone_dot.time_ms / 2```.
 And the global variable: ```tone_dash.time_ms``` is derived from the value of ```tone_dot.time_ms``` as:
-```tone_dash.time_ms = 3 * tone_dot.time_ms```. (see the function: ```ck_dualbtn_and_set_speed()```)
+```tone_dash.time_ms = 3 * tone_dot.time_ms```. (see the function: ```set_speed()```)
 
 
 ```
@@ -143,7 +143,7 @@ eventually with changes in the Arduino sketch running on the M5Echo device.
 In the morse code test version I experienced that setting ```tone_dot.time_ms``` to uneven decimal values, for example: 90, 110, 130,
 caused the tone for the dash to sound garbled. Also the tone of the ```push button``` on the M5Echo sounded garbled alike. That is why I
 created an global array of integer values: ```const int tone_time_lst[] = {10, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200};``` which 
-will be used in function ```ck_dualbtn_and_set_speed()``` to change the value of  ```tone_dot.time_ms```, 
+will be used in function ```set_speed()``` to change the value of  ```tone_dot.time_ms```, 
 from which are derived the values of other global variables (see the explanation about morse speed test above).
 
 

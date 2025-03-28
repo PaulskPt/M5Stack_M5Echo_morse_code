@@ -183,8 +183,8 @@ int tone_time_lst_idx = 4; // index to 100
 #ifdef USE_DUALBTN
 int blu_last_value, red_last_value = 0;
 
-void ck_dualbtn_and_set_speed() {
-  static constexpr const char txt0[] PROGMEM = "ck_dualbtn_and_set_speed(): ";
+void set_speed() {
+  static constexpr const char txt0[] PROGMEM = "set_speed(): ";
   static constexpr const char txt1[] PROGMEM = "dualbutton";
   static constexpr const char txt2[] PROGMEM = "released";
   static constexpr const char txt3[] PROGMEM = "pressed";
@@ -649,7 +649,7 @@ void loop() {
   #endif
 
 #ifdef USE_DUALBTN
-    ck_dualbtn_and_set_speed();
+    set_speed();
 #endif
 
     if (M5.Btn.wasPressed()) {

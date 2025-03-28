@@ -38,7 +38,7 @@ In the two device setup version:
 In the morse code speed test:
 ```
 a) an Arduino sketch that runs on the M5Echo device (one device setup version).
-   Note that in this sketch, lines 218-246, show how the morse code is timed.
+   Note that in this sketch, lines 313-341, show how the morse code is timed.
 ```
 SHORT DESCRIPTION:
 

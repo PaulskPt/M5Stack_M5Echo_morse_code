@@ -135,3 +135,9 @@ In the two devices setup, the morse code speed control by use of the red and blu
 is in an initial state of development;
 The performance of the MicroPython sketch pio-morse_v3.py needs work to make it better, 
 eventually with changes in the Arduino sketch running on the M5Echo device.
+In the morse code test version I experienced that setting ```tone_dot.time_ms``` to uneven decimal values, for example: 90, 110, 130,
+caused the tone for the dash to sound garbled. Also the tone of the ```push button``` on the M5Echo sounded garbled alike. That is why I
+created an global array of integer values: ```const int tone_time_lst[] = {10, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200};``` which 
+will be used to set the  ```tone_dot.time_ms``` and to set the value of the global variable ```dly1```, where dly1 = tone_dot.time_ms / 2.
+
+

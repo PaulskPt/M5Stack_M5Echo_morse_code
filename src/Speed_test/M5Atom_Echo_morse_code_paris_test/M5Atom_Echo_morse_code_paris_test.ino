@@ -190,13 +190,16 @@ int blu_last_value, red_last_value = 0;
 
 void set_speed() {
   static constexpr const char txt0[] PROGMEM = "set_speed(): ";
-  static constexpr const char txt1[] PROGMEM = "dualbutton";
-  static constexpr const char txt2[] PROGMEM = "released";
-  static constexpr const char txt3[] PROGMEM = "pressed";
-  static constexpr const char txt4[] PROGMEM = " red ";
-  static constexpr const char txt5[] PROGMEM = " blue ";
-  static constexpr const char txt6[] PROGMEM = "tone_time_lst_idx changed to: ";
-  static constexpr const char txt7[] PROGMEM = "speed has been reached. ";
+  const char *txts[] PROGMEM = {
+    "dualbutton",                      // 0
+    "released",                        // 1
+    "pressed",                         // 2
+    " red ",                           // 3
+    " blue ",                          // 4
+    "tone_time_list_idx changed to: ", // 5
+    "speed has been reached. "         // 6
+  };
+  
   int blu_value= 0;
   int red_value = 0;
   int tone_dly1 = 100;
@@ -214,15 +217,15 @@ void set_speed() {
 
   if (btn_red_pressed) {
     Serial.print(txt0);
-    Serial.print(txt1);
-    Serial.print(txt4);
-    Serial.println(txt3);
+    Serial.print(txts[0]);
+    Serial.print(txts[3]);
+    Serial.println(txts[2]);
   }
   else if (btn_blu_pressed) {
     Serial.print(txt0);
-    Serial.print(txt1);
-    Serial.print(txt5);
-    Serial.println(txt3);
+    Serial.print(txts[0]);
+    Serial.print(txts[4]);
+    Serial.println(txts[2]);
   }
 
   // Debounce wait
@@ -232,9 +235,9 @@ void set_speed() {
       delay(debounce_delay);
     }
     Serial.print(txt0);
-    Serial.print(txt1);
-    Serial.print(txt4);
-    Serial.print(txt2);
+    Serial.print(txts[0]);
+    Serial.print(txts[3]);
+    Serial.print(txts[1]);
     Serial.printf("? %s\n", (red_value == 1) ? "Yes" : "No ");
   }
   else if (btn_blu_pressed) {
@@ -244,9 +247,9 @@ void set_speed() {
       delay(debounce_delay);
     }
     Serial.print(txt0);
-    Serial.print(txt1);
-    Serial.print(txt5);
-    Serial.print(txt2);
+    Serial.print(txts[0]);
+    Serial.print(txts[4]);
+    Serial.print(txts[1]);
     Serial.printf("? %s\n", (blu_value == 1) ? "Yes" : "No ");
   }
   tone_dly1 = tone_dot.time_ms;
@@ -258,7 +261,7 @@ void set_speed() {
       tone_time_lst_idx = le_tone_time_lst -1;
       Serial.print(txt0);
       Serial.print(F("maximum "));
-      Serial.print(txt7);
+      Serial.print(txts[6]);
       if (my_debug) {
         Serial.printf("tone_time_lst_idx = %d, le_tone_time_lst-1 = %d, tone_time_lst[%d] = %d\n", 
           tone_time_lst_idx, le_tone_time_lst-1, tone_time_lst_idx, tone_time_lst[tone_time_lst_idx]);
@@ -266,7 +269,7 @@ void set_speed() {
         Serial.println();
       }
       Serial.print(txt0);
-      Serial.print(txt6);
+      Serial.print(txts[5]);
       Serial.printf("%d\n", tone_time_lst_idx);
     }
     tone_dly1 = tone_time_lst[tone_time_lst_idx];
@@ -280,7 +283,7 @@ void set_speed() {
       tone_time_lst_idx = 0;
       Serial.print(txt0);
       Serial.print(F("minimum "));
-      Serial.print(txt7);
+      Serial.print(txts[6]);
       if (my_debug) {
         Serial.printf("tone_time_lst_idx = %d, le_tone_time_lst-1 = %d, tone_time_lst[%d] = %d\n", 
           tone_time_lst_idx, le_tone_time_lst-1, tone_time_lst_idx, tone_time_lst[tone_time_lst_idx]);
@@ -288,7 +291,7 @@ void set_speed() {
         Serial.println();
       }
       Serial.print(txt0);
-      Serial.print(txt6);
+      Serial.print(txts[5]);
       Serial.printf("%d\n", tone_time_lst_idx);
     }
     tone_dly1 = tone_time_lst[tone_time_lst_idx];

@@ -192,6 +192,11 @@ int blu_last_value, red_last_value = 0;
 
 void ck_dualbtn_and_set_speed() {
   static constexpr const char txt0[] PROGMEM = "ck_dualbtn_and_set_speed(): ";
+  static constexpr const char txt1[] PROGMEM = "dualbutton";
+  static constexpr const char txt2[] PROGMEM = "released";
+  static constexpr const char txt3[] PROGMEM = "pressed";
+  static constexpr const char txt4[] PROGMEM = " red ";
+  static constexpr const char txt5[] PROGMEM = " blue ";
   int blu_value= 0;
   int red_value = 0;
   int tone_dly1 = 100;
@@ -214,8 +219,10 @@ void ck_dualbtn_and_set_speed() {
       delay(100);
     }
     Serial.print(txt0);
-    Serial.print(F("red button released? "));
-    Serial.printf("%s\n", (red_value == 1) ? "Yes" : "No ");
+    Serial.print(txt1);
+    Serial.print(txt4);
+    Serial.print(txt2);
+    Serial.printf("? %s\n", (red_value == 1) ? "Yes" : "No ");
   }
   else if (btn_blu_pressed) {
     // Debounce wait
@@ -224,15 +231,19 @@ void ck_dualbtn_and_set_speed() {
       delay(100);
     }
     Serial.print(txt0);
-    Serial.print(F("blue button released? "));
-    Serial.printf("%s\n", (blu_value == 1) ? "Yes" : "No ");
+    Serial.print(txt1);
+    Serial.print(txt5);
+    Serial.print(txt2);
+    Serial.printf("? %s\n", (blu_value == 1) ? "Yes" : "No ");
   }
   tone_dly1 = tone_dot.time_ms;
   unit_dly1 = dly1;
 
   if (btn_red_pressed) { // was if (red_value != red_last_value) {
     Serial.print(txt0);
-    Serial.println(F("dualbutton red pressed"));
+    Serial.print(txt1);
+    Serial.print(txt4);
+    Serial.println(txt3);
     speeds_idx += 1;
     if (speeds_idx > le_speeds_lst-1)
       speeds_idx = le_speeds_lst -1;
@@ -243,8 +254,9 @@ void ck_dualbtn_and_set_speed() {
   }
   else if (btn_blu_pressed) { // was if (blu_value != blu_last_value) {
     Serial.print(txt0);
-    Serial.println(F("dualbutton blue pressed"));
-    
+    Serial.print(txt1);
+    Serial.print(txt5);
+    Serial.println(txt3);
     speeds_idx -= 1;
     if (speeds_idx < 0)
       speeds_idx = 0;

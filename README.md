@@ -1,5 +1,18 @@
 M5Stack M5Echo morse code test
 
+INTRO - A BIT OF HISTORY:
+
+In 1962 I was teached the morse code at the signals school of the Royal Dutch Navy in Amsterdam, The Netherlands. During nine months I learned to send and to receive (and decode in my head) morse code and type the received text on a typewriter ("in the blind", that is: not looking on your hands while typing). Sending the morse code using a heavy duty copper "straight key" was done by the so-called "count method" (in Dutch: "tel methode"). The teacher had a wooden stick in one of his hands. He hit the stick on a wooden block mounted on the table in front of him, in the rythm that we, students "sang" the counting.
+And we, the student wireless radio operators, in English also known as "sparks" (named after one of the first type of wireless radio transmitter [wiki](https://en.wikipedia.org/wiki/Spark-gap_transmitter)), had to speak loudly the counting of the 
+dots, the dashes, the spaces between them and the spaces between the characters of a word and the spaces between the words.
+It went like this: (7 counts in front, to start with) 1234567, "1 and 123 and 2 and 223" for ". --- ---" (= letter W).
+As we grew in handling the heavy morse key and speed increased, we arrived at a speed at which the counting was not possible
+anymore. From then on we sang the dots and dashes like: "dit dah dah" (= letter W). And in a classroom with 24 students,
+one heard 24 brass straight keys pounding in the same rythm. 
+Now, 63 years later, the profession of wireless operator doesn't exist anymore. Since the arrival of satellite communication,
+the sparks disappeared from the military navy ships as well as from the merchant navy ships. However, morse code is still in use by radio-hobbyists, known as: "hamradio operators". I am one of them.
+Since a decade I also experiment with microcontrollers. Recently, I came to the idea to create a small project in which a microcontroller generates morse code. 
+
 PURPOSE: 
 Create morse code audio using a M5Stack M5Echo device.
 

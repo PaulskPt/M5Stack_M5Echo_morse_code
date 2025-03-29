@@ -10,7 +10,7 @@ As we grew in handling the heavy morse key and speed increased, we arrived at a 
 anymore. From then on we sang the dots and dashes like: "dit dah dah" (= letter W). And in a classroom with 24 students,
 one heard 24 brass straight keys pounding in the same rythm. 
 Now, 63 years later, the profession of wireless operator doesn't exist anymore. Since the arrival of satellite communication,
-the sparks disappeared from the military navy ships as well as from the merchant navy ships. However, morse code is still in use by radio-hobbyists, known as: "hamradio operators". I am one of them.
+the sparks disappeared from the military navy ships as well as from the merchant navy ships. However, morse code is still in use by radio-hobbyists, known as: "hamradio operators". I am one of them. For more info see: [morse code](https://en.wikipedia.org/wiki/Morse_code).
 Since a decade I also experiment with microcontrollers. Recently, I came to the idea to create a small project in which a microcontroller generates morse code. 
 
 PURPOSE: 

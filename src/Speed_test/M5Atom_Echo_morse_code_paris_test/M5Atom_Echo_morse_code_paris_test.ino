@@ -52,6 +52,8 @@ bool my_debug = false;
 
 // In function send_morse() print unit space indicator "|1|" 
 // between the dots and dashes.
+// If you don't want the unit space indicator printed,
+// comment-out the next line.
 #define SHOW_UNITS  
 
 // Activate USE_DUALBTN if you want to use a M5Stack Dualbutton unit
@@ -146,7 +148,7 @@ beep btn_tone2 =
 
 // Define the morse code, dot-dash sequences for 
 // the characters that are in the text string to send in morse code
-// in the array {2,1}, the 1 represents a dot, the 2 a dash.
+// Example: in the array {1,2}, the 1 represents a dot, the 2 a dash.
 std::unordered_map<char, std::vector<int>> morse_txt_dict = {
   {'a', {1,2}},
   {'i', {1,1}},
@@ -206,8 +208,8 @@ void set_speed() {
   int unit_dly1 = 50;
   bool btn_blu_pressed = false;
   bool btn_red_pressed = false;
-  red_value = digitalRead(GROVE_PIN1);  // read the value of BUTTON. 读取33号引脚的值
-  blu_value = digitalRead(GROVE_PIN2);
+  red_value = digitalRead(GROVE_PIN1);  // read the value of the RED BUTTON (Pin 26). 读取26号引脚的值
+  blu_value = digitalRead(GROVE_PIN2);  // read the value of the BLUE BUTTON (Pin 32). 读取32号引脚的值
 
   if (red_value == 1 && blu_value == 1)
     return;  // No button pressed
